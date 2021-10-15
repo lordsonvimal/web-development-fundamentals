@@ -1,0 +1,29 @@
+input {
+	height: 30px;
+	width: 200px;
+	border-radius: 5px;
+	padding: 0 4px;
+	border: 1px solid;
+}
+input:focus-visible,
+input:focus,
+input:active {
+	border: none;
+}
+#logo-image {
+	height: inherit;
+	cursor: pointer;
+}
+.hamburger {
+	height: inherit;
+	cursor: pointer;
+}
+.login {
+	background-color: unset;
+	border: none;
+	height: 30px;
+}
+.login:hover {
+	cursor: pointer;
+	text-decoration: underline;
+}
