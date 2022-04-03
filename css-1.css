@@ -5,6 +5,14 @@ input {
 	padding: 0 4px;
 	border: 1px solid;
 }
+input:valid {
+	background-color: white;
+}
+
+input:invalid {
+	background-color: red;
+}
+
 input:focus-visible,
 input:focus,
 input:active {
