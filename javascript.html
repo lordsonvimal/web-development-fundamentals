@@ -1,0 +1,44 @@
+<html>
+  <head></head>
+  <body></body>
+  <script>
+    const add = (a, b) =>  a + b
+    const sub = (a, b) =>  a - b
+    const mul = (a, b) => a * b
+    const div = (a, b) => a / b
+
+    // iterator
+
+    // Iterable
+    const a = [1, 2, 3, 4, 5]
+    // index  0.  1. 2. 3. 4.
+
+    // Basic for
+    for (let i = 0; i < a.length; i++) {
+        // console.log(a[i])
+        // 1
+        // 2
+        // 3
+        // 4
+        // 5
+    }
+
+    // For Of
+    for (let val of a) {
+        // console.log(val)
+    }
+
+    // Foreach
+    const fun = (val) => {
+        // console.log(val)
+    }
+    a.forEach(fun);
+
+    // while
+    let i = 0;
+    while (i < a.length) {
+        console.log(a[i])
+        i++
+    }
+  </script>
+</html>

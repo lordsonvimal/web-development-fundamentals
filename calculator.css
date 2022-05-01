@@ -1,0 +1,40 @@
+html,
+body {
+  margin: 0;
+ padding: 0;
+}
+
+body * {
+  box-sizing: border-box;
+}
+
+main {
+  height: 100%;
+  padding: 10%;
+}
+
+.container {
+  height: 100%;
+  display: grid;
+  align-items: center;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 8px;
+  padding: 8px 0;
+}
+
+.results-box {
+  align-items: center;
+  display: flex;
+  border: 1px solid #333333;
+  border-radius: 5px;
+  font-size: 32px;
+  justify-content: right;
+  height: 60px;
+  padding: 8px;
+}
+
+button {
+  cursor: pointer;
+  height: 100%;
+}

@@ -1,0 +1,108 @@
+<html>
+  <head>
+    <link href="calculator.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <main>
+      <div id="results" class="results-box"></div>
+      <section class="container">
+        <button>7</button>
+        <button>8</button>
+        <button>9</button>
+        <button>+</button>
+        <button>4</button>
+        <button>5</button>
+        <button>6</button>
+        <button>-</button>
+        <button>1</button>
+        <button>2</button>
+        <button>3</button>
+        <button>*</button>
+        <button>0</button>
+        <button>.</button>
+        <button>=</button>
+        <button>/</button>
+      </section>
+    </main>
+  </body>
+  <script type="text/javascript">
+    let operator = "";
+    let result = null;
+    let operand = null;
+
+    const add = (a, b) => a + b;
+    const sub = (a, b) => a - b;
+    const mul = (a, b) => a * b;
+    const div = (a, b) => a / b;
+
+    const appendToDisplay = (val) => {
+      const resultsBox = document.querySelector("#results");
+      const resultsValue = resultsBox.innerText + val;
+      resultsBox.innerText = resultsValue;
+    };
+
+    const clearResultsBox = () => {
+      const resultsBox = document.querySelector("#results");
+      resultsBox.innerText = "";
+    };
+
+    const displayResults = (val) => {
+      const resultsBox = document.querySelector("#results");
+      resultsBox.innerText = val.toString();
+    };
+
+    const doOperation = (operator) => {
+      const operand = parseInt(document.querySelector("#results").innerText);
+      clearResultsBox();
+      if (!result) {
+        result = operand;
+        return;
+      }
+      if (result) {
+        switch(operator) {
+          case "+":
+            result = add(result, operand);
+            break;
+          case "-":
+            result = sub(result, operand);
+            break;
+          case "*":
+            result = mul(result, operand);
+            break;
+          case "/":
+            result = div(result, operand);
+            break;
+        }
+        displayResults(result);
+      }
+    };
+
+    const handleClick = (event) => {
+      const innerText = event.target.innerText;
+      switch(innerText) {
+        case "0":
+        case "1":
+        case "2":
+        case "3":
+        case "4":
+        case "5":
+        case "6":
+        case "7":
+        case "8":
+        case "9":
+          appendToDisplay(innerText);
+          break;
+        case ".":
+          break;
+        default:
+          doOperation(innerText);
+          break;
+      }
+    };
+
+    for (let btn of document.querySelectorAll("button")) {
+      btn.addEventListener("click", handleClick);
+    }
+
+  </script>
+</html>
