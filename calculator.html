@@ -27,7 +27,6 @@
   </body>
   <script type="text/javascript">
     let operator = "";
-    let result = null;
     let operand = null;
 
     const add = (a, b) => a + b;
@@ -41,39 +40,57 @@
       resultsBox.innerText = resultsValue;
     };
 
-    const clearResultsBox = () => {
+    const clearDisplay = () => {
       const resultsBox = document.querySelector("#results");
       resultsBox.innerText = "";
     };
 
-    const displayResults = (val) => {
-      const resultsBox = document.querySelector("#results");
-      resultsBox.innerText = val.toString();
-    };
+    const doOperation = (op, operand1, operand2) => {
+      const res = op(operand1, operand2);
+      appendToDisplay(res);
+      operand = null;
+    }
 
-    const doOperation = (operator) => {
-      const operand = parseInt(document.querySelector("#results").innerText);
-      clearResultsBox();
-      if (!result) {
-        result = operand;
-        return;
+    const setOperator = (operatorValue) => {
+      if (operatorValue !== "=") {
+        operator = operatorValue;
       }
-      if (result) {
-        switch(operator) {
+    }
+
+    const parseDisplayValue = () => {
+      const resultsBox = document.querySelector("#results");
+      if (resultsBox.innerText) {
+        return parseInt(resultsBox.innerText);
+      }
+    }
+
+    const getOperationFunction = (operator) => {
+      switch(operator) {
           case "+":
-            result = add(result, operand);
-            break;
+            return add;
           case "-":
-            result = sub(result, operand);
-            break;
+            return sub;
           case "*":
-            result = mul(result, operand);
-            break;
+            return mul;
           case "/":
-            result = div(result, operand);
-            break;
+            return div;
         }
-        displayResults(result);
+    }
+
+    const handleOperator = (operatorValue) => {
+      const displayNum = parseDisplayValue();
+      if (operand) {
+        clearDisplay();
+        if (displayNum) doOperation(getOperationFunction(operator), operand, displayNum);
+        setOperator(operatorValue);
+      } else {
+        if (displayNum) {
+          clearDisplay();
+          operand = displayNum;
+          setOperator(operatorValue);
+        } else {
+          operator = "";
+        }
       }
     };
 
@@ -95,7 +112,7 @@
         case ".":
           break;
         default:
-          doOperation(innerText);
+          handleOperator(innerText);
           break;
       }
     };
